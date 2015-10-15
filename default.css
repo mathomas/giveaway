@@ -1,0 +1,57 @@
+    body { background: lightblue; }
+    body, input { margin: auto; font-family: Georgia, serif; font-size: 30px; text-align: center; }
+    input { text-align: center; border: inset 1px; }
+    form { background: lightblue; border: 6px solid darkblue; margin-top: 1.5em; padding: 10px; border-radius: 16px; -moz-border-radius: 16px; }
+    label { display: block; margin-bottom: .5em; }
+    h1 { text-align: center; }
+    h2, h3 { color: lightblue; text-align: center; margin-top: 1.5em; }
+    ol > li { font-size: 1.25em; }
+    li { margin-top: 1em; }
+    div#main { width: 800px; margin: 0 auto; padding: 10px 125px 25px 125px; 
+    background: white; border-left: 2px solid #444; border-right: 2px solid #444; }
+    .btn {
+    -moz-box-shadow: 0px 1px 0px 0px #fff6af;
+    -webkit-box-shadow: 0px 1px 0px 0px #fff6af;
+    box-shadow: 0px 1px 0px 0px #fff6af;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
+    background:-moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+    background:-webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+    background:-o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+    background:-ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
+    background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+    background-color:#ffec64;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #ffaa22;
+    display:inline-block;
+    cursor:pointer;
+    color:#333333;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffee66;
+    }
+    .btn:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
+    background:-moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+    background:-webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+    background:-o-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+    background:-ms-linear-gradient(top, #ffab23 5%, #ffec64 100%);
+    background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
+    background-color:#ffab23;
+    }
+    .myButton:active {
+    position:relative;
+    top:1px;
+    }
+    div#result { margin-top: 1.5em; font-size: .80em; margin-bottom: 1em; color: white; text-shadow: darkblue 0.05em 0.05em 0.1em; }
+    div#instructions { text-align: left; margin-top: 4em; font-size: .60em; color: #888; }
+    em { color: #666; }
+    .key { font-family: Arial, sans-serif; color: #666 }
+    div#exampleEmail { text-align: left; margin-top: 4em; font-size: .40em; color: black; 
+    border: 1px solid gray; border-right: 1px solid black; border-bottom: 1px solid black; }

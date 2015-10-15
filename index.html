@@ -1,185 +1,121 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Mike Thomas' YouTube Channel Giveaway</title>
-  
-  
-  <script type='text/javascript' src='http://code.jquery.com/jquery-2.1.3.js'></script>
-  <script type="text/javascript" src="./lib/axios/dist/axios.standalone.js"></script>
-  <script type="text/javascript" src="./lib/CryptoJS/rollups/hmac-sha256.js"></script>
-  <script type="text/javascript" src="./lib/CryptoJS/rollups/sha256.js"></script>
-  <script type="text/javascript" src="./lib/CryptoJS/components/hmac.js"></script>
-  <script type="text/javascript" src="./lib/CryptoJS/components/enc-base64.js"></script>
-  <script type="text/javascript" src="./lib/moment/moment.js"></script>
-  <script type="text/javascript" src="./lib/url-template/url-template.js"></script>
-  <script type="text/javascript" src="./lib/apiGatewayCore/sigV4Client.js"></script>
-  <script type="text/javascript" src="./lib/apiGatewayCore/apiGatewayClient.js"></script>
-  <script type="text/javascript" src="./lib/apiGatewayCore/simpleHttpClient.js"></script>
-  <script type="text/javascript" src="./lib/apiGatewayCore/utils.js"></script>
-  <script type="text/javascript" src="./apigClient.js"></script>
-  
-	<style type="text/css">
-	    body { background: lightblue; }
-        body, input { margin: auto; font-family: Georgia, serif; font-size: 30px; text-align: center; }
-        input { text-align: center; border: inset 1px; }
-        form { background: lightblue; border: 6px solid darkblue; margin-top: 1.5em; padding: 10px; border-radius: 16px; -moz-border-radius: 16px; }
-        label { display: block; margin-bottom: .5em; }
-        h1 { text-align: center; }
-        h2, h3 { color: lightblue; text-align: center; margin-top: 1.5em; }
-        ol > li { font-size: 1.25em; }
-        li { margin-top: 1em; }
-
-        div#main { width: 800px; margin: 0 auto; padding: 10px 125px 25px 125px; 
-        	       background: white; border-left: 2px solid #444; border-right: 2px solid #444; }
-	       
-        .btn {
-        	-moz-box-shadow: 0px 1px 0px 0px #fff6af;
-        	-webkit-box-shadow: 0px 1px 0px 0px #fff6af;
-        	box-shadow: 0px 1px 0px 0px #fff6af;
-        	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23));
-        	background:-moz-linear-gradient(top, #ffec64 5%, #ffab23 100%);
-        	background:-webkit-linear-gradient(top, #ffec64 5%, #ffab23 100%);
-        	background:-o-linear-gradient(top, #ffec64 5%, #ffab23 100%);
-        	background:-ms-linear-gradient(top, #ffec64 5%, #ffab23 100%);
-        	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
-        	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
-        	background-color:#ffec64;
-        	-moz-border-radius:6px;
-        	-webkit-border-radius:6px;
-        	border-radius:6px;
-        	border:1px solid #ffaa22;
-        	display:inline-block;
-        	cursor:pointer;
-        	color:#333333;
-        	font-family:Arial;
-        	font-size:15px;
-        	font-weight:bold;
-        	padding:6px 24px;
-        	text-decoration:none;
-        	text-shadow:0px 1px 0px #ffee66;
-        }
-        .btn:hover {
-        	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64));
-        	background:-moz-linear-gradient(top, #ffab23 5%, #ffec64 100%);
-        	background:-webkit-linear-gradient(top, #ffab23 5%, #ffec64 100%);
-        	background:-o-linear-gradient(top, #ffab23 5%, #ffec64 100%);
-        	background:-ms-linear-gradient(top, #ffab23 5%, #ffec64 100%);
-        	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
-        	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64',GradientType=0);
-        	background-color:#ffab23;
-        }
-        .myButton:active {
-        	position:relative;
-        	top:1px;
-        }
-
-        div#result { margin-top: 1.5em; font-size: .80em; margin-bottom: 1em; color: white; text-shadow: darkblue 0.05em 0.05em 0.1em; }
-
-        div#instructions { text-align: left; margin-top: 4em; font-size: .60em; color: #888; }
-        em { color: #666; }
-        .key { font-family: Arial, sans-serif; color: #666 }
-
-        div#exampleEmail { text-align: left; margin-top: 4em; font-size: .40em; color: black; 
-        				   border: 1px solid gray; border-right: 1px solid black; border-bottom: 1px solid black; }
-	</style>
-
-  
-
-<script type='text/javascript'>
-
-var getGiveawayCode = function() {
-    var currentUrl = window.location.toString();
-    return currentUrl.split("#")[1];
-}
-
-$(window).load(function(){
-    var questDisplay = $('#result');
-    
-    $('#submit').click(function () {
-        questDisplay.fadeOut("slow", function() {
-            var questKey = $('#questKey').val();
-            var params = { giveawaycode: getGiveawayCode(), questKey: questKey };
-            var apigClient = apigClientFactory.newClient();
-
-            apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
-                .then(function(result){
-                    console.log(result);
-                    var quest = result.data;
-                    questDisplay.html(quest);
-                    questDisplay.fadeIn("slow");
-                }).catch( function(result){
-                    console.log(result);
-                    questDisplay.html("No quest matching that quest key!");
-                    questDisplay.fadeIn("slow");
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>Mike Thomas' YouTube Channel Giveaway</title>
+        
+        <link rel="stylesheet" type="text/css" href="./default.css">
+        
+        <script type='text/javascript' src='http://code.jquery.com/jquery-2.1.3.js'></script>
+        <script type="text/javascript" src="./lib/axios/dist/axios.standalone.js"></script>
+        <script type="text/javascript" src="./lib/CryptoJS/rollups/hmac-sha256.js"></script>
+        <script type="text/javascript" src="./lib/CryptoJS/rollups/sha256.js"></script>
+        <script type="text/javascript" src="./lib/CryptoJS/components/hmac.js"></script>
+        <script type="text/javascript" src="./lib/CryptoJS/components/enc-base64.js"></script>
+        <script type="text/javascript" src="./lib/moment/moment.js"></script>
+        <script type="text/javascript" src="./lib/url-template/url-template.js"></script>
+        <script type="text/javascript" src="./lib/apiGatewayCore/sigV4Client.js"></script>
+        <script type="text/javascript" src="./lib/apiGatewayCore/apiGatewayClient.js"></script>
+        <script type="text/javascript" src="./lib/apiGatewayCore/simpleHttpClient.js"></script>
+        <script type="text/javascript" src="./lib/apiGatewayCore/utils.js"></script>
+        <script type="text/javascript" src="./apigClient.js"></script>
+        <script type='text/javascript'>
+            var getGiveawayCode = function() {
+                var currentUrl = window.location.toString();
+                return currentUrl.split("#")[1];
+            }
+            
+            $(window).load(function(){
+                var questDisplay = $('#result');
+                
+                $('#submit').click(function () {
+                    questDisplay.fadeOut("slow", function() {
+                        var questKey = $('#questKey').val();
+                        var params = { giveawaycode: getGiveawayCode(), questKey: questKey };
+                        var apigClient = apigClientFactory.newClient();
+            
+                        apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
+                            .then(function(result){
+                                console.log(result);
+                                var quest = result.data;
+                                questDisplay.html(quest);
+                                questDisplay.fadeIn("slow");
+                            }).catch( function(result){
+                                console.log(result);
+                                questDisplay.html("No quest matching that quest key!");
+                                questDisplay.fadeIn("slow");
+                        });
+                    });
+                });
             });
-        });
-    });
-});
-
-</script>
-
-</head>
-	<body>
-		<div id="main">
-			<h1 style="margin-bottom: 0;">Giveaway</h1>
-			<h3 style="margin-top: 0;">by Mike Thomas</h3>
-			
-			<form id="questForm" action="#">
-				<label>Quest Key:</label>
-				<input id="questKey" type="text" required="true" style="width: 8em; margin-bottom: .75em;"><br>
-				<button id="submit" class="btn" type="button">Get Quest</button>
-				<div id="result">
-					...?...
-				</div>
-			</form>
-			<div id="instructions">
-				<h2>Cautions, Rules, and Legal Stuff</h2>
-				<p>If you're taking part in the contest you agree to the following:
-					<ul>
-						<li>Please realize I'm going to send the kit as cheaply as possible :-)</em>
-						<li><em>One entry per person.</em>  Duplicate entries will be ignored.
-						<li>You alone are responsible for your country's customs or taxes, if applicable.</em>
-						<li>No complaining!
-					</ul>
-
-				<h2>Instructions</h2>
-				<p>Welcome to the Pentax ME Giveaway!  In order to be entered into the drawing for the camera kit, you need
-				to carefully follow the <em style="text-decoration: underline;">5 easy steps</em> below.</p>
-				<p>When the time limit is up, I'll put all the valid entries into a drawing to determine the winner.  I will
-					contact the winner by email to get the mailing address.</p>
-				<p>If the instructions aren't followed you will not be entered in the drawing!</p>
-				
-				<p>
-					<ol>
-						<li><em>Subscribe</em> to <a href="http://www.youtube.com/user/mathomas1962">my YouTube channel</a>.  
-							<em>Only subscribers can win</em>.
-						<li><p>Find the <span style="font-size: 125%; font-weight: bold;"><em>5</em></span> <em>"quest keys"</em> in my photography videos.</p>
-							<p>A quest key will look something like this:  <span class="key">quest key: snarfle</span>,
-								and will pop up in the video for a few seconds.</p>
-							<p>The quest keys will appear within the first couple of minutes of a number of my videos, so you'll have to do some hunting.</p>
-						</li>
-						<li><p>Come back here and enter the quest keys (one at a time) into the form above, and click the "Get Quest" button to have each quest revealed.</p>
-							<p>I suggest you try typing <span class="key">snarfle</span> in the form <em>now</em>, just for fun!</p>
-						</li>
-						<li><p>Perform the quests (<em>all 5 of them</em>), and take notes!  You'll have to do some detective work, but everything you 
-							need to know in order to perform the quests is in my YouTube videos, or their descriptions, etc.</p>
-							<p><em>You have to perform all the quests, and get the answers/findings correct to win.</em></p>
-						</li>
-						<li>Once your quests are complete, send an email to 
-							<a href="mailto:pentaxme@me.com?subject=Entry for Pentax ME Drawing">pentaxme@me.com</a> with the following:
-							<ul>
-								<li>Your youtube username (so I can check that you are subscribed)
-								<li>Your quest findings.  All the quests must be completed.  Give the quest key and your findings.
-						    </ul>
-							<p>You might want to check out the example email below.  Really closely.</p>
-						</li>
-				 	</ol>
-				</p>
-				<h2>Example Email (there's no excuse to get this wrong)</h2>
-		    </div>
-			<div id="exampleEmail">
-				<pre>
+            
+        </script>
+    </head>
+    <body>
+        <div id="main">
+            <h1 style="margin-bottom: 0;">Giveaway</h1>
+            <h3 style="margin-top: 0;">by Mike Thomas</h3>
+            <form id="questForm" action="#">
+                <label>Quest Key:</label>
+                <input id="questKey" type="text" required="true" style="width: 8em; margin-bottom: .75em;"><br>
+                <button id="submit" class="btn" type="button">Get Quest</button>
+                <div id="result">
+                    ...?...
+                </div>
+            </form>
+            <div id="instructions">
+                <h2>Cautions, Rules, and Legal Stuff</h2>
+                <p>If you're taking part in the contest you agree to the following:
+                <ul>
+                    <li>Please realize I'm going to send the kit as cheaply as possible :-)</em>
+                    <li><em>One entry per person.</em>  Duplicate entries will be ignored.
+                    <li>You alone are responsible for your country's customs or taxes, if applicable.</em>
+                    <li>No complaining!
+                </ul>
+                <h2>Instructions</h2>
+                <p>Welcome to the Pentax ME Giveaway!  In order to be entered into the drawing for the camera kit, you need
+                    to carefully follow the <em style="text-decoration: underline;">5 easy steps</em> below.
+                </p>
+                <p>When the time limit is up, I'll put all the valid entries into a drawing to determine the winner.  I will
+                    contact the winner by email to get the mailing address.
+                </p>
+                <p>If the instructions aren't followed you will not be entered in the drawing!</p>
+                <p>
+                <ol>
+                    <li><em>Subscribe</em> to <a href="http://www.youtube.com/user/mathomas1962">my YouTube channel</a>.  
+                        <em>Only subscribers can win</em>.
+                    <li>
+                        <p>Find the <span style="font-size: 125%; font-weight: bold;"><em>5</em></span> <em>"quest keys"</em> in my photography videos.</p>
+                        <p>A quest key will look something like this:  <span class="key">quest key: snarfle</span>,
+                            and will pop up in the video for a few seconds.
+                        </p>
+                        <p>The quest keys will appear within the first couple of minutes of a number of my videos, so you'll have to do some hunting.</p>
+                    </li>
+                    <li>
+                        <p>Come back here and enter the quest keys (one at a time) into the form above, and click the "Get Quest" button to have each quest revealed.</p>
+                        <p>I suggest you try typing <span class="key">snarfle</span> in the form <em>now</em>, just for fun!</p>
+                    </li>
+                    <li>
+                        <p>Perform the quests (<em>all 5 of them</em>), and take notes!  You'll have to do some detective work, but everything you 
+                            need to know in order to perform the quests is in my YouTube videos, or their descriptions, etc.
+                        </p>
+                        <p><em>You have to perform all the quests, and get the answers/findings correct to win.</em></p>
+                    </li>
+                    <li>
+                        Once your quests are complete, send an email to 
+                        <a href="mailto:pentaxme@me.com?subject=Entry for Pentax ME Drawing">pentaxme@me.com</a> with the following:
+                        <ul>
+                            <li>Your youtube username (so I can check that you are subscribed)
+                            <li>Your quest findings.  All the quests must be completed.  Give the quest key and your findings.
+                        </ul>
+                        <p>You might want to check out the example email below.  Really closely.</p>
+                    </li>
+                </ol>
+                </p>
+                <h2>Example Email (there's no excuse to get this wrong)</h2>
+            </div>
+            <div id="exampleEmail">
+                <pre>
 From:  luckywinner@email.com
 To:    pentaxme@me.com
 Subject:  Entry for Pentax ME Drawing
@@ -199,15 +135,7 @@ foobar:   I loved the 5th one
 quux:     Row, row, row your boat 
 
 				</pre>
-			</div>
-			 *** of course, your username, quest keys, and findings will be different!
-		</div>
-
-
-
-
+            </div>
+            *** of course, your username, quest keys, and findings will be different!
+        </div>
 </html>
-
-
-
-
