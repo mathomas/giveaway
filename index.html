@@ -29,7 +29,7 @@
                 var questDisplay = $('#result');
                 
                 $('#submit').click(function () {
-                    questDisplay.fadeOut("slow", function() {
+                    questDisplay.fadeTo("slow", 0, function() {
                         var questKey = $('#questKey').val();
                         var params = { giveawaycode: getGiveawayCode(), questKey: questKey };
                         var apigClient = apigClientFactory.newClient();
@@ -39,7 +39,7 @@
                                 console.log(result);
                                 var quest = result.data;
                                 questDisplay.html(quest);
-                                questDisplay.fadeIn("slow");
+                                questDisplay.fadeTo(5000, 100);
                             }).catch( function(result){
                                 console.log(result);
                                 questDisplay.html("No quest matching that quest key!");

@@ -9,6 +9,7 @@
     li { margin-top: 1em; }
     div#main { width: 800px; margin: 0 auto; padding: 10px 125px 25px 125px; 
     background: white; border-left: 2px solid #444; border-right: 2px solid #444; }
+    
     .btn {
     -moz-box-shadow: 0px 1px 0px 0px #fff6af;
     -webkit-box-shadow: 0px 1px 0px 0px #fff6af;
@@ -29,7 +30,7 @@
     cursor:pointer;
     color:#333333;
     font-family:Arial;
-    font-size:15px;
+    font-size:22px;
     font-weight:bold;
     padding:6px 24px;
     text-decoration:none;
@@ -49,6 +50,7 @@
     position:relative;
     top:1px;
     }
+    
     div#result { margin-top: 1.5em; font-size: .80em; margin-bottom: 1em; color: white; text-shadow: darkblue 0.05em 0.05em 0.1em; }
     div#instructions { text-align: left; margin-top: 4em; font-size: .60em; color: #888; }
     em { color: #666; }
