@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Giveaway AJAX Test - jsFiddle demo by mathomas</title>
+  
+  
+  <script type='text/javascript' src='http://code.jquery.com/jquery-2.1.3.js'></script>
+  <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+  <script type="text/javascript" src="lib/moment/moment.js"></script>
+  <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+  <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+  <script type="text/javascript" src="apigClient.js"></script>
+  
+  <style type='text/css'>
+    label { font-family: Georgia, sans-serif; }
+    #result { background-color: yellow; display: none; }
+  </style>
+  
+
+<script type='text/javascript'>
+$(window).load(function(){
+    var questDisplay = $('#result');
+    $('#submit').click(function () {
+        questDisplay.fadeOut("slow", function() {
+            var questKey = $('#questKey').val();
+            var params = { giveawaycode: "test", questKey: questKey };
+            var apigClient = apigClientFactory.newClient();
+
+            apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
+                .then(function(result){
+                    console.log(result);
+                    var quest = result.data;
+                    questDisplay.html(quest);
+                    questDisplay.fadeIn("slow");
+                }).catch( function(result){
+                    console.log(result);
+                    questDisplay.html("No quest matching that quest key!");
+                    questDisplay.fadeIn("slow");
+            });
+        });
+    });
+});
+
+</script>
+
+</head>
+<body>
+  <label>Quest Key:</label>
+<input id="questKey" type="text" length="12" value="example"></input>
+<br/>
+<button id="submit">Get Quest</button>
+<p id="result"></p>
+</body>
+
+</html>
+
+
