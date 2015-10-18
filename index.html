@@ -19,50 +19,9 @@
         <script type="text/javascript" src="./lib/apiGatewayCore/simpleHttpClient.js"></script>
         <script type="text/javascript" src="./lib/apiGatewayCore/utils.js"></script>
         <script type="text/javascript" src="./apigClient.js"></script>
-        <script type='text/javascript'>
-            var getGiveawayCode = function() {
-                var currentUrl = window.location.toString();
-                return currentUrl.split("#")[1];
-            }
-            
-            $(window).load(function(){
-                var questDisplay = $('#result');
-                
-                $('#submit').click(function () {
-                    questDisplay.fadeTo("slow", 0, function() {
-                        var questKey = $('#questKey').val();
-                        var params = { giveawaycode: getGiveawayCode(), questKey: questKey };
-                        var apigClient = apigClientFactory.newClient();
-            
-                        apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
-                            .then(function(result){
-                                console.log(result);
-                                var quest = result.data;
-                                questDisplay.html(quest);
-                                questDisplay.fadeTo(5000, 100);
-                            }).catch( function(result){
-                                console.log(result);
-                                questDisplay.html("No quest matching that quest key!");
-                                questDisplay.fadeIn("slow");
-                        });
-                    });
-                });
-            });
-            
-        </script>
-    </head>
-    <body>
-        <div id="main">
-            <h1 style="margin-bottom: 0;">Giveaway</h1>
-            <h3 style="margin-top: 0;">by Mike Thomas</h3>
-            <form id="questForm" action="#">
-                <label>Quest Key:</label>
-                <input id="questKey" type="text" required="true" style="width: 8em; margin-bottom: .75em;"><br>
-                <button id="submit" class="btn" type="button">Get Quest</button>
-                <div id="result">
-                    ...?...
-                </div>
-            </form>
+        <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.js"></script>
+
+        <script id="instructions" type="text/x-handlebars-template">
             <div id="instructions">
                 <h2>Cautions, Rules, and Legal Stuff</h2>
                 <p>If you're taking part in the contest you agree to the following:
@@ -112,30 +71,92 @@
                     </li>
                 </ol>
                 </p>
-                <h2>Example Email (there's no excuse to get this wrong)</h2>
             </div>
+        </script>
+
+        <script type='text/javascript'>
+        
+            var getGiveawayCode = function() {
+                var currentUrl = window.location.toString();
+                return currentUrl.split("#")[1];
+            };
+            
+            var displayInstructions = function() {
+                var source   = $("#instructions").html();
+                var template = Handlebars.compile(source);
+                var html = template({});
+                console.log(html);
+                $('.instructions-placeholder').html(html);
+            };
+            
+            $(window).load(function(){
+                var questDisplay = $('#result');
+                
+                displayInstructions();
+                
+                $('#submit').click(function () {
+                    questDisplay.fadeTo("slow", 0, function() {
+                        var questKey = $('#questKey').val();
+                        var params = { giveawaycode: getGiveawayCode(), questKey: questKey };
+                        var apigClient = apigClientFactory.newClient();
+            
+                        apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
+                            .then(function(result){
+                                console.log(result);
+                                var quest = result.data;
+                                questDisplay.html(quest);
+                                questDisplay.fadeTo(5000, 100);
+                            }).catch( function(result){
+                                console.log(result);
+                                questDisplay.html("No quest matching that quest key!");
+                                questDisplay.fadeIn("slow");
+                        });
+                    });
+                });
+            });
+            
+        </script>
+    </head>
+
+    <body>
+        <div id="main">
+            <h1 style="margin-bottom: 0;">Giveaway</h1>
+            <h3 style="margin-top: 0;">by Mike Thomas</h3>
+            <form id="questForm" action="#">
+                <label>Quest Key:</label>
+                <input id="questKey" type="text" required="true" style="width: 8em; margin-bottom: .75em;"><br>
+                <button id="submit" class="btn" type="button">Get Quest</button>
+                <div id="result">
+                    ...?...
+                </div>
+            </form>
+
+            <div class="instructions-placeholder"></div>
+
+            <h2>Example Email (there's no excuse to get this wrong)</h2>
             <div id="exampleEmail">
                 <pre>
-From:  luckywinner@email.com
-To:    pentaxme@me.com
-Subject:  Entry for Pentax ME Drawing
--------------------------------------------------------------
-Hi Mike,
+                From:  luckywinner@email.com
+                To:    pentaxme@me.com
+                Subject:  Entry for Pentax ME Drawing
+                -------------------------------------------------------------
+                Hi Mike,
 
-Here's my perfectly complete email.  Cool how I followed directions, eh?
+                Here's my perfectly complete email.  Cool how I followed directions, eh?
 
-YouTube username:  youtubewinner
+                YouTube username:  youtubewinner
 
-My quest findings:
+                My quest findings:
 
-snarfle:  I found three pictures of dolphins
-bloog:    The monkeys names are "flip" and "flop"
-spliff:   Max aperture of f/2.8
-foobar:   I loved the 5th one
-quux:     Row, row, row your boat 
-
-				</pre>
+                snarfle:  I found three pictures of dolphins
+                bloog:    The monkeys names are "flip" and "flop"
+                spliff:   Max aperture of f/2.8
+                foobar:   I loved the 5th one
+                quux:     Row, row, row your boat 
+                </pre>
             </div>
             *** of course, your username, quest keys, and findings will be different!
         </div>
+    </body>
+
 </html>
