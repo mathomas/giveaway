@@ -21,6 +21,42 @@
         <script type="text/javascript" src="./apigClient.js"></script>
         <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.js"></script>
 
+        
+
+        <script id="intro" type="text/x-handlebars-template">
+            <div id="intro">
+                <h1 style="margin-bottom: 0;">{{item}}<br/>Giveaway</h1>
+                <h3 style="margin-top: 0;">by Mike Thomas</h3>
+            </div>
+        </script>
+        
+        <script id="example-email" type="text/x-handlebars-template">
+            <div id="exampleEmail">
+            <h2>Example Email (there's no excuse to get this wrong)</h2>
+
+                <pre>
+                From:  luckywinner@email.com
+                To:    {{entryEmail}}
+                Subject:  Entry for Pentax ME Drawing
+                -------------------------------------------------------------
+                Hi Mike,
+
+                Here's my perfectly complete email.  Cool how I followed directions, eh?
+
+                YouTube username:  youtubewinner
+
+                My quest findings:
+
+                snarfle:  I found three pictures of dolphins
+                bloog:    The monkeys names are "flip" and "flop"
+                spliff:   Max aperture of f/2.8
+                foobar:   I loved the 5th one
+                quux:     Row, row, row your boat 
+                </pre>
+            </div>
+            *** of course, your username, quest keys, and findings will be different!
+        </script>
+
         <script id="instructions" type="text/x-handlebars-template">
             <div id="instructions">
                 <h2>Cautions, Rules, and Legal Stuff</h2>
@@ -32,7 +68,7 @@
                     <li>No complaining!
                 </ul>
                 <h2>Instructions</h2>
-                <p>Welcome to the Pentax ME Giveaway!  In order to be entered into the drawing for the camera kit, you need
+                <p>Welcome to the {{item}} giveaway!  In order to be entered into the drawing for the camera kit, you need
                     to carefully follow the <em style="text-decoration: underline;">5 easy steps</em> below.
                 </p>
                 <p>When the time limit is up, I'll put all the valid entries into a drawing to determine the winner.  I will
@@ -44,7 +80,7 @@
                     <li><em>Subscribe</em> to <a href="http://www.youtube.com/user/mathomas1962">my YouTube channel</a>.  
                         <em>Only subscribers can win</em>.
                     <li>
-                        <p>Find the <span style="font-size: 125%; font-weight: bold;"><em>5</em></span> <em>"quest keys"</em> in my photography videos.</p>
+                        <p>Find the <span style="font-size: 125%; font-weight: bold;"><em>{{questCount}}</em></span> <em>"quest keys"</em> in my photography videos.</p>
                         <p>A quest key will look something like this:  <span class="key">quest key: snarfle</span>,
                             and will pop up in the video for a few seconds.
                         </p>
@@ -55,14 +91,14 @@
                         <p>I suggest you try typing <span class="key">snarfle</span> in the form <em>now</em>, just for fun!</p>
                     </li>
                     <li>
-                        <p>Perform the quests (<em>all 5 of them</em>), and take notes!  You'll have to do some detective work, but everything you 
+                        <p>Perform the quests (<em>all {{questCount}} of them</em>), and take notes!  You'll have to do some detective work, but everything you 
                             need to know in order to perform the quests is in my YouTube videos, or their descriptions, etc.
                         </p>
                         <p><em>You have to perform all the quests, and get the answers/findings correct to win.</em></p>
                     </li>
                     <li>
                         Once your quests are complete, send an email to 
-                        <a href="mailto:pentaxme@me.com?subject=Entry for Pentax ME Drawing">pentaxme@me.com</a> with the following:
+                        <a href="mailto:{{entryEmail}}?subject=Entry for {{item}} Drawing">{{entryEmail}}</a> with the following:
                         <ul>
                             <li>Your youtube username (so I can check that you are subscribed)
                             <li>Your quest findings.  All the quests must be completed.  Give the quest key and your findings.
@@ -76,23 +112,44 @@
 
         <script type='text/javascript'>
         
+            var exampleDetails = {
+                "item": "Hardcoded Test Item",
+                "questCount": 4,
+                "entryEmail": "entry@email.com"
+            };
+        
             var getGiveawayCode = function() {
                 var currentUrl = window.location.toString();
                 return currentUrl.split("#")[1];
             };
             
+            var displayIntro = function() {
+                var source   = $("#intro").html();
+                var template = Handlebars.compile(source);
+                var html = template(exampleDetails);
+                $('#intro-placeholder').html(html);
+            };
+            
             var displayInstructions = function() {
                 var source   = $("#instructions").html();
                 var template = Handlebars.compile(source);
-                var html = template({});
-                console.log(html);
-                $('.instructions-placeholder').html(html);
+                var html = template(exampleDetails);
+                $('#instructions-placeholder').html(html);
+            };
+            
+            var displayExampleEmail = function() {
+                var source   = $("#example-email").html();
+                var template = Handlebars.compile(source);
+                var html = template(exampleDetails);
+                $('#example-email-placeholder').html(html);
             };
             
             $(window).load(function(){
                 var questDisplay = $('#result');
                 
+                displayIntro();
                 displayInstructions();
+                displayExampleEmail();
                 
                 $('#submit').click(function () {
                     questDisplay.fadeTo("slow", 0, function() {
@@ -120,42 +177,24 @@
 
     <body>
         <div id="main">
-            <h1 style="margin-bottom: 0;">Giveaway</h1>
-            <h3 style="margin-top: 0;">by Mike Thomas</h3>
-            <form id="questForm" action="#">
-                <label>Quest Key:</label>
-                <input id="questKey" type="text" required="true" style="width: 8em; margin-bottom: .75em;"><br>
-                <button id="submit" class="btn" type="button">Get Quest</button>
-                <div id="result">
-                    ...?...
-                </div>
-            </form>
 
-            <div class="instructions-placeholder"></div>
+            <div id="intro-placeholder"></div>
 
-            <h2>Example Email (there's no excuse to get this wrong)</h2>
-            <div id="exampleEmail">
-                <pre>
-                From:  luckywinner@email.com
-                To:    pentaxme@me.com
-                Subject:  Entry for Pentax ME Drawing
-                -------------------------------------------------------------
-                Hi Mike,
-
-                Here's my perfectly complete email.  Cool how I followed directions, eh?
-
-                YouTube username:  youtubewinner
-
-                My quest findings:
-
-                snarfle:  I found three pictures of dolphins
-                bloog:    The monkeys names are "flip" and "flop"
-                spliff:   Max aperture of f/2.8
-                foobar:   I loved the 5th one
-                quux:     Row, row, row your boat 
-                </pre>
+            <div id="form">
+                <form id="questForm" action="#">
+                    <label>Quest Key:</label>
+                    <input id="questKey" type="text" required="true" style="width: 8em; margin-bottom: .75em;"><br>
+                    <button id="submit" class="btn" type="button">Get Quest</button>
+                    <div id="result">
+                        ...?...
+                    </div>
+                </form>
             </div>
-            *** of course, your username, quest keys, and findings will be different!
+
+            <div id="instructions-placeholder"></div>
+            
+            <div id="example-email-placeholder"></div>
+
         </div>
     </body>
 
