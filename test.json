@@ -1,0 +1,11 @@
+{
+    "details": {
+        "code": "test",
+        "item": "Test Item",
+        "expiration": "2015-10-29T00:00:00"
+    },
+    "quests": [
+        { "questKey": "zeiss", "text": "quest for quest key 'zeiss'" },
+        { "questKey": "example", "text": "quest for quest key 'example'" }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "details": {
+        "code": "mshzn",
+        "item": "Mindshift Horizon Backpack",
+        "expiration": "2015-10-29T00:00:00"
+    },
+    "quests": [
+        { "questKey": "key1", "text": "What color is my Porsche Boxster" },
+        { "questKey": "key2", "text": "What are my dogs' names?" },
+        { "questKey": "key3", "text": "What was the subject of my first video?" }
+    ]
+}
