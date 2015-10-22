@@ -37,7 +37,7 @@
                 <pre>
                 From:  luckywinner@email.com
                 To:    {{entryEmail}}
-                Subject:  Entry for Pentax ME Drawing
+                Subject:  Entry for {{item}}
                 -------------------------------------------------------------
                 Hi Mike,
 
@@ -118,10 +118,11 @@
                 "entryEmail": "entry@email.com"
             };
         
-            var getGiveawayCode = function() {
-                var currentUrl = window.location.toString();
-                return currentUrl.split("#")[1];
-            };
+            var queryString = function(key) {
+                key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx control chars
+                var match = location.search.match(new RegExp("[?&]" + key + "=([^&]+)(&|$)"));
+                return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+            }
             
             var displayIntro = function() {
                 var source   = $("#intro").html();
@@ -154,7 +155,7 @@
                 $('#submit').click(function () {
                     questDisplay.fadeTo("slow", 0, function() {
                         var questKey = $('#questKey').val();
-                        var params = { giveawaycode: getGiveawayCode(), questKey: questKey };
+                        var params = { giveawaycode: queryString("g"), questKey: questKey };
                         var apigClient = apigClientFactory.newClient();
             
                         apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
