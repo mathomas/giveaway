@@ -3,6 +3,7 @@
         "code": "test",
         "item": "Test Item",
         "expiration": "2015-10-29T00:00:00"
+        "entryEmail": "testgiveaway@icloud.com"
     },
     "quests": [
         { "questKey": "zeiss", "text": "quest for quest key 'zeiss'" },
