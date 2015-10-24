@@ -124,39 +124,48 @@
                 return match && decodeURIComponent(match[1].replace(/\+/g, " "));
             }
             
-            var displayIntro = function() {
+            var displayIntro = function(giveawayDetails) {
                 var source   = $("#intro").html();
                 var template = Handlebars.compile(source);
-                var html = template(exampleDetails);
+                var html = template(giveawayDetails);
                 $('#intro-placeholder').html(html);
             };
             
-            var displayInstructions = function() {
+            var displayInstructions = function(giveawayDetails) {
                 var source   = $("#instructions").html();
                 var template = Handlebars.compile(source);
-                var html = template(exampleDetails);
+                var html = template(giveawayDetails);
                 $('#instructions-placeholder').html(html);
             };
             
-            var displayExampleEmail = function() {
+            var displayExampleEmail = function(giveawayDetails) {
                 var source   = $("#example-email").html();
                 var template = Handlebars.compile(source);
-                var html = template(exampleDetails);
+                var html = template(giveawayDetails);
                 $('#example-email-placeholder').html(html);
             };
             
             $(window).load(function(){
+                var apigClient = apigClientFactory.newClient();
+
                 var questDisplay = $('#result');
+                var params = { giveawaycode: queryString("g") };
+                apigClient.giveawayDetailsGiveawaycodeGet(params, {}, {})
+                    .then(function(result){
+                        console.log(result);
+                        var giveawayDetails = result.data;
+                        displayIntro(giveawayDetails);
+                        displayInstructions(giveawayDetails);
+                        displayExampleEmail(giveawayDetails);
+                    }).catch( function(result){
+                        console.log(result);
+                });
                 
-                displayIntro();
-                displayInstructions();
-                displayExampleEmail();
                 
                 $('#submit').click(function () {
                     questDisplay.fadeTo("slow", 0, function() {
                         var questKey = $('#questKey').val();
                         var params = { giveawaycode: queryString("g"), questKey: questKey };
-                        var apigClient = apigClientFactory.newClient();
             
                         apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
                             .then(function(result){
