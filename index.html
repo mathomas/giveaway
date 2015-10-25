@@ -56,6 +56,19 @@
             </div>
             *** of course, your username, quest keys, and findings will be different!
         </script>
+        
+        <script id="giveaway-form" type="text/x-handlebars-template">
+            <div id="form">
+                <form id="questForm" action="#">
+                    <label>Quest Key:</label>
+                    <input id="questKey" type="text" required="true" style="width: 8em; margin-bottom: .75em;"><br>
+                    <button id="submit" class="btn" type="button">Get Quest</button>
+                    <div id="result">
+                        ...?...
+                    </div>
+                </form>
+            </div>
+        </script>
 
         <script id="instructions" type="text/x-handlebars-template">
             <div id="instructions">
@@ -145,40 +158,49 @@
                 $('#example-email-placeholder').html(html);
             };
             
+            var displayForm = function(giveawayDetails) {
+                var source   = $("#giveaway-form").html();
+                var template = Handlebars.compile(source);
+                var html = template(giveawayDetails);
+                $('#giveaway-form-placeholder').html(html);
+            };
+            
             $(window).load(function(){
                 var apigClient = apigClientFactory.newClient();
 
-                var questDisplay = $('#result');
                 var params = { giveawaycode: queryString("g") };
                 apigClient.giveawayDetailsGiveawaycodeGet(params, {}, {})
                     .then(function(result){
-                        console.log(result);
                         var giveawayDetails = result.data;
                         displayIntro(giveawayDetails);
+                        displayForm(giveawayDetails);
                         displayInstructions(giveawayDetails);
                         displayExampleEmail(giveawayDetails);
+
+                        var questDisplay = $('#result');
+                        
+                        $('#submit').click(function () {
+                            console.log("in submit handler");
+                            questDisplay.fadeTo("slow", 0, function() {
+                                console.log("in fadeTo");
+                                var questKey = $('#questKey').val();
+                                var params = { giveawaycode: queryString("g"), questKey: questKey };
+
+                                apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
+                                    .then(function(result){
+                                        console.log(result);
+                                        var quest = result.data;
+                                        questDisplay.html(quest);
+                                        questDisplay.fadeTo(5000, 100);
+                                    }).catch( function(result){
+                                        console.log(result);
+                                        questDisplay.html("No quest matching that quest key!");
+                                        questDisplay.fadeIn("slow");
+                                });
+                            });
+                        });
                     }).catch( function(result){
                         console.log(result);
-                });
-                
-                
-                $('#submit').click(function () {
-                    questDisplay.fadeTo("slow", 0, function() {
-                        var questKey = $('#questKey').val();
-                        var params = { giveawaycode: queryString("g"), questKey: questKey };
-            
-                        apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
-                            .then(function(result){
-                                console.log(result);
-                                var quest = result.data;
-                                questDisplay.html(quest);
-                                questDisplay.fadeTo(5000, 100);
-                            }).catch( function(result){
-                                console.log(result);
-                                questDisplay.html("No quest matching that quest key!");
-                                questDisplay.fadeIn("slow");
-                        });
-                    });
                 });
             });
             
@@ -187,24 +209,10 @@
 
     <body>
         <div id="main">
-
             <div id="intro-placeholder"></div>
-
-            <div id="form">
-                <form id="questForm" action="#">
-                    <label>Quest Key:</label>
-                    <input id="questKey" type="text" required="true" style="width: 8em; margin-bottom: .75em;"><br>
-                    <button id="submit" class="btn" type="button">Get Quest</button>
-                    <div id="result">
-                        ...?...
-                    </div>
-                </form>
-            </div>
-
+            <div id="giveaway-form-placeholder"></div>
             <div id="instructions-placeholder"></div>
-            
             <div id="example-email-placeholder"></div>
-
         </div>
     </body>
 
