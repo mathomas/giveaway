@@ -11,35 +11,35 @@ var queryString = function(key) {
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
 
-var displayIntro = function(giveawayDetails) {
+var renderIntro = function(giveawayDetails) {
     var source   = $("#intro").html();
     var template = Handlebars.compile(source);
     var html = template(giveawayDetails);
     $('#intro-placeholder').html(html);
 };
 
-var displayInstructions = function(giveawayDetails) {
+var renderInstructions = function(giveawayDetails) {
     var source   = $("#instructions").html();
     var template = Handlebars.compile(source);
     var html = template(giveawayDetails);
     $('#instructions-placeholder').html(html);
 };
 
-var displayExampleEmail = function(giveawayDetails) {
+var renderExampleEmail = function(giveawayDetails) {
     var source   = $("#example-email").html();
     var template = Handlebars.compile(source);
     var html = template(giveawayDetails);
     $('#example-email-placeholder').html(html);
 };
 
-var displayForm = function(giveawayDetails) {
+var renderForm = function(giveawayDetails) {
     var source   = $("#giveaway-form").html();
     var template = Handlebars.compile(source);
     var html = template(giveawayDetails);
     $('#giveaway-form-placeholder').html(html);
 };
 
-var displayQuest = function (apigClient) {
+var renderQuest = function (apigClient) {
     var questDisplay = $('#result');
     questDisplay.fadeTo("slow", 0, function() {
         console.log("in fadeTo");
@@ -65,15 +65,15 @@ $(window).load(function(){
     apigClient.giveawayDetailsGiveawaycodeGet(params, {}, {})
         .then(function(result){
             var giveawayDetails = result.data;
-            displayIntro(giveawayDetails);
-            displayForm(giveawayDetails);
-            displayInstructions(giveawayDetails);
-            displayExampleEmail(giveawayDetails);
+            renderIntro(giveawayDetails);
+            renderForm(giveawayDetails);
+            renderInstructions(giveawayDetails);
+            renderExampleEmail(giveawayDetails);
 
-            $('#submit').click(function() {displayQuest(apigClient)});
+            $('#submit').click(function() {renderQuest(apigClient)});
             $('#questKey').on("keypress", function(e) {
                 if(e.which === 13){
-                    displayQuest(apigClient);
+                    renderQuest(apigClient);
                     e.preventDefault();
                 }
             });
