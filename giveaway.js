@@ -39,6 +39,25 @@ var displayForm = function(giveawayDetails) {
     $('#giveaway-form-placeholder').html(html);
 };
 
+var displayQuest = function (apigClient) {
+    var questDisplay = $('#result');
+    questDisplay.fadeTo("slow", 0, function() {
+        console.log("in fadeTo");
+        var questKey = $('#questKey').val();
+        var params = { giveawaycode: queryString("g"), questKey: questKey };
+
+        apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
+            .then(function(result){
+                var quest = result.data;
+                questDisplay.html(quest);
+                questDisplay.fadeTo(5000, 100);
+            }).catch( function(result){
+                questDisplay.html("No quest matching that quest key!");
+                questDisplay.fadeIn("slow");
+        });
+    });
+}
+
 $(window).load(function(){
     var apigClient = apigClientFactory.newClient();
 
@@ -51,28 +70,7 @@ $(window).load(function(){
             displayInstructions(giveawayDetails);
             displayExampleEmail(giveawayDetails);
 
-            var questDisplay = $('#result');
-            
-            $('#submit').click(function () {
-                console.log("in submit handler");
-                questDisplay.fadeTo("slow", 0, function() {
-                    console.log("in fadeTo");
-                    var questKey = $('#questKey').val();
-                    var params = { giveawaycode: queryString("g"), questKey: questKey };
-
-                    apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
-                        .then(function(result){
-                            console.log(result);
-                            var quest = result.data;
-                            questDisplay.html(quest);
-                            questDisplay.fadeTo(5000, 100);
-                        }).catch( function(result){
-                            console.log(result);
-                            questDisplay.html("No quest matching that quest key!");
-                            questDisplay.fadeIn("slow");
-                    });
-                });
-            });
+            $('#submit').click(function() {displayQuest(apigClient)});
         }).catch( function(result){
             console.log(result);
     });
