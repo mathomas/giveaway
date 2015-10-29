@@ -7,7 +7,7 @@
     },
     "quests": [
         { "questKey": "a7ii", "text": "What (very specific) color is my Porsche Boxster?" },
-        { "questKey": "nikon", "text": "I've vlogged about two Nikon film cameras I've bought within the past 356 days.  What were they?" },
+        { "questKey": "nikon", "text": "I've vlogged about two <i>Nikon</i> film cameras I've bought within the past 356 days.  What were they?" },
         { "questKey": "zeiss", "text": "Find my <a href='http://flickr.com' target='_new'>flickr.com</a> photostream.  What are the names of my three 'bestest college buddies'?" },
         { "questKey": "mindshift", "text": "What are my dogs' names?" }
     ]

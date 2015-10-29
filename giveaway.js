@@ -18,6 +18,13 @@ var renderIntro = function(giveawayDetails) {
     $('#intro-placeholder').html(html);
 };
 
+var renderForm = function(giveawayDetails) {
+    var source   = $("#giveaway-form").html();
+    var template = Handlebars.compile(source);
+    var html = template(giveawayDetails);
+    $('#giveaway-form-placeholder').html(html);
+};
+
 var renderInstructions = function(giveawayDetails) {
     var source   = $("#instructions").html();
     var template = Handlebars.compile(source);
@@ -32,37 +39,33 @@ var renderExampleEmail = function(giveawayDetails) {
     $('#example-email-placeholder').html(html);
 };
 
-var renderForm = function(giveawayDetails) {
-    var source   = $("#giveaway-form").html();
-    var template = Handlebars.compile(source);
-    var html = template(giveawayDetails);
-    $('#giveaway-form-placeholder').html(html);
-};
-
-var renderQuest = function (apigClient) {
-    var questDisplay = $('#result');
-    questDisplay.fadeTo("slow", 0, function() {
-        console.log("in fadeTo");
-        var questKey = $('#questKey').val();
-        var params = { giveawaycode: queryString("g"), questKey: questKey };
-
-        apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
-            .then(function(result){
-                var quest = result.data;
-                questDisplay.html(quest);
-                questDisplay.fadeTo(5000, 100);
-            }).catch( function(result){
-                questDisplay.html("No quest matching that quest key!");
-                questDisplay.fadeIn("slow");
-        });
-    });
-};
-
 var renderAll = function(giveawayDetails) {
     renderIntro(giveawayDetails);
     renderForm(giveawayDetails);
     renderInstructions(giveawayDetails);
     renderExampleEmail(giveawayDetails);
+};
+
+var renderQuest = function (apigClient) {
+    var errorMsg = "No quest matching that quest key!";
+    var questDisplay = $('#result');
+    
+    questDisplay.fadeTo("slow", 0, function() {
+        var questKey = $('#questKey').val();
+        var params = { giveawaycode: queryString("g"), questKey: questKey };
+
+        apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
+            .then(function(result){
+                console.log(result);
+                var quest = result.data;
+                questDisplay.html(quest ? quest : errorMsg);
+                questDisplay.fadeTo(5000, 100);
+            }).catch( function(result){
+                console.log(result);
+                questDisplay.html(errorMsg);
+                questDisplay.fadeTo(5000, 100);
+        });
+    });
 };
 
 $(window).load(function(){
@@ -71,8 +74,10 @@ $(window).load(function(){
     var params = { giveawaycode: queryString("g") };
     apigClient.giveawayDetailsGiveawaycodeGet(params, {}, {})
         .then(function(result){
-            var giveawayDetails = result.data;
-            renderAll(giveawayDetails);
+            renderAll(result.data);
+            $('#main').fadeIn(function() {
+                $('#questKey').focus();
+            });
 
             $('#submit').click(function() {renderQuest(apigClient)});
             $('#questKey').on("keypress", function(e) {
