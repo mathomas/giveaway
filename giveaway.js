@@ -56,7 +56,14 @@ var renderQuest = function (apigClient) {
                 questDisplay.fadeIn("slow");
         });
     });
-}
+};
+
+var renderAll = function(giveawayDetails) {
+    renderIntro(giveawayDetails);
+    renderForm(giveawayDetails);
+    renderInstructions(giveawayDetails);
+    renderExampleEmail(giveawayDetails);
+};
 
 $(window).load(function(){
     var apigClient = apigClientFactory.newClient();
@@ -65,10 +72,7 @@ $(window).load(function(){
     apigClient.giveawayDetailsGiveawaycodeGet(params, {}, {})
         .then(function(result){
             var giveawayDetails = result.data;
-            renderIntro(giveawayDetails);
-            renderForm(giveawayDetails);
-            renderInstructions(giveawayDetails);
-            renderExampleEmail(giveawayDetails);
+            renderAll(giveawayDetails);
 
             $('#submit').click(function() {renderQuest(apigClient)});
             $('#questKey').on("keypress", function(e) {
