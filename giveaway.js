@@ -71,6 +71,12 @@ $(window).load(function(){
             displayExampleEmail(giveawayDetails);
 
             $('#submit').click(function() {displayQuest(apigClient)});
+            $('#questKey').on("keypress", function(e) {
+                if(e.which === 13){
+                    displayQuest(apigClient);
+                    e.preventDefault();
+                }
+            });
         }).catch( function(result){
             console.log(result);
     });
