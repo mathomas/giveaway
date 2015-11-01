@@ -50,28 +50,28 @@ var renderQuest = function (apigClient) {
     var errorMsg = "No quest matching that quest key!";
     var questDisplay = $('#result');
     
-    questDisplay.fadeTo("slow", 0, function() {
+    questDisplay.html("&nbsp;");
+    var spinner = new Spinner({ length: 0, corners: 1, width: 4, trail: 40, scale: 1.0, top: '.65em', left: '50%', position: 'relative' }).spin(questDisplay[0]);
+    
+    questDisplay.fadeTo(750, 0, function() {
         var questKey = $('#questKey').val();
         var params = { giveawaycode: queryString("g"), questKey: questKey };
 
         apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
             .then(function(result){
-                console.log(result);
                 var quest = result.data;
                 questDisplay.html(quest ? quest : errorMsg);
-                questDisplay.fadeTo(5000, 100);
+                questDisplay.fadeTo(1500, 100);
             }).catch( function(result){
-                console.log(result);
                 questDisplay.html(errorMsg);
-                questDisplay.fadeTo(5000, 100);
+                questDisplay.fadeTo(1500, 100);
         });
     });
 };
 
 $(window).load(function(){
-    var spinnerOpts = { scale: 1.5, top: '25%', left: '50%', position: 'absolute' }
-    var target = document.getElementById('body')
-    var spinner = new Spinner(spinnerOpts).spin(target);
+    var spinnerOpts = { length: 0, corners: 1, width: 4, scale: 1.5, trail: 40, top: '25%', left: '50%', position: 'absolute' }
+    var spinner = new Spinner(spinnerOpts).spin($('body')[0]);
     
     var apigClient = apigClientFactory.newClient();
 
@@ -84,7 +84,7 @@ $(window).load(function(){
                 $('#questKey').focus();
             });
 
-            $('#submit').click(function() {renderQuest(apigClient)});
+            $('#submit').click(function() { renderQuest(apigClient)} );
             $('#questKey').on("keypress", function(e) {
                 if(e.which === 13){
                     renderQuest(apigClient);

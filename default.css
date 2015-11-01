@@ -51,7 +51,7 @@
     top:1px;
     }
     
-    div#result { margin-top: 1.5em; font-size: .80em; margin-bottom: 1em; color: white; text-shadow: darkblue 0.05em 0.05em 0.1em; }
+    div#result { min-height: 2em; margin-top: 1.5em; font-size: .80em; margin-bottom: 1em; color: white; text-shadow: darkblue 0.05em 0.05em 0.1em; }
     div#instructions { text-align: left; margin-top: 4em; font-size: .60em; color: #888; }
     em { color: #666; }
     .key { font-family: Arial, sans-serif; color: #666 }
