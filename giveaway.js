@@ -53,19 +53,15 @@ var renderQuest = function (apigClient) {
     questDisplay.html("&nbsp;");
     var spinner = new Spinner({ length: 0, corners: 1, width: 4, trail: 40, scale: 1.0, top: '.65em', left: '50%', position: 'relative' }).spin(questDisplay[0]);
     
-    questDisplay.fadeTo(750, 0, function() {
-        var questKey = $('#questKey').val();
-        var params = { giveawaycode: queryString("g"), questKey: questKey };
+    var questKey = $('#questKey').val();
+    var params = { giveawaycode: queryString("g"), questKey: questKey };
 
-        apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
-            .then(function(result){
-                var quest = result.data;
-                questDisplay.html(quest ? quest : errorMsg);
-                questDisplay.fadeTo(1500, 100);
-            }).catch( function(result){
-                questDisplay.html(errorMsg);
-                questDisplay.fadeTo(1500, 100);
-        });
+    apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
+        .then(function(result){
+            var quest = result.data;
+            questDisplay.html(quest ? quest : errorMsg);
+        }).catch( function(result){
+            questDisplay.html(errorMsg);
     });
 };
 
