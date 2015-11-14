@@ -3,7 +3,7 @@ var exampleDetails = {
     "item": "Hardcoded Test Item",
     "questCount": 4,
     "entryEmail": "entry@email.com",
-    "expiration": moment("2015-11-08 23:30:00").calendar()
+    "expiration": "2015-11-21 24:00:00"
 };
 
 var queryString = function(key) {
@@ -15,6 +15,8 @@ var queryString = function(key) {
 var renderIntro = function(giveawayDetails) {
     var source   = $("#intro").html();
     var template = Handlebars.compile(source);
+	giveawayDetails.expirationFormatted = moment(giveawayDetails.expiration).format("MMMM Do YYYY, hh:mm");
+	giveawayDetails.expirationFromNow = moment(giveawayDetails.expiration).fromNow();
     var html = template(giveawayDetails);
     $('#intro-placeholder').html(html);
 };
