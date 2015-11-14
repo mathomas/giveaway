@@ -2,7 +2,8 @@
 var exampleDetails = {
     "item": "Hardcoded Test Item",
     "questCount": 4,
-    "entryEmail": "entry@email.com"
+    "entryEmail": "entry@email.com",
+    "expiration": moment("2015-11-08 23:30:00").calendar()
 };
 
 var queryString = function(key) {
@@ -74,7 +75,7 @@ $(window).load(function(){
     var params = { giveawaycode: queryString("g") };
     apigClient.giveawayDetailsGiveawaycodeGet(params, {}, {})
         .then(function(result){
-            renderAll(result.data);
+            renderAll(exampleDetails);
             spinner.stop();
             $('#main').fadeIn(function() {
                 $('#questKey').focus();
