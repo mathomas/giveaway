@@ -12,31 +12,38 @@ var queryString = function(key) {
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
 
-var renderIntro = function(giveawayDetails) {
-    var source   = $("#intro").html();
+var renderError = function(message) {
+    var source = $("#error").html();
     var template = Handlebars.compile(source);
-	giveawayDetails.expirationFormatted = moment(giveawayDetails.expiration).format("MMMM Do YYYY, hh:mm");
-	giveawayDetails.expirationFromNow = moment(giveawayDetails.expiration).fromNow();
+    var html = template({message: message});
+    $('body').html(html);
+};
+
+var renderIntro = function(giveawayDetails) {
+    var source = $("#intro").html();
+    var template = Handlebars.compile(source);
+    giveawayDetails.expirationFormatted = moment(giveawayDetails.expiration).format("MMMM Do YYYY, hh:mm");
+    giveawayDetails.expirationFromNow = moment(giveawayDetails.expiration).fromNow();
     var html = template(giveawayDetails);
     $('#intro-placeholder').html(html);
 };
 
 var renderForm = function(giveawayDetails) {
-    var source   = $("#giveaway-form").html();
+    var source = $("#giveaway-form").html();
     var template = Handlebars.compile(source);
     var html = template(giveawayDetails);
     $('#giveaway-form-placeholder').html(html);
 };
 
 var renderInstructions = function(giveawayDetails) {
-    var source   = $("#instructions").html();
+    var source = $("#instructions").html();
     var template = Handlebars.compile(source);
     var html = template(giveawayDetails);
     $('#instructions-placeholder').html(html);
 };
 
 var renderExampleEmail = function(giveawayDetails) {
-    var source   = $("#example-email").html();
+    var source = $("#example-email").html();
     var template = Handlebars.compile(source);
     var html = template(giveawayDetails);
     $('#example-email-placeholder').html(html);
@@ -77,19 +84,25 @@ $(window).load(function(){
     var params = { giveawaycode: queryString("g") };
     apigClient.giveawayDetailsGiveawaycodeGet(params, {}, {})
         .then(function(result){
-            renderAll(exampleDetails);
-            spinner.stop();
-            $('#main').fadeIn(function() {
-                $('#questKey').focus();
-            });
-
-            $('#submit').click(function() { renderQuest(apigClient)} );
-            $('#questKey').on("keypress", function(e) {
-                if(e.which === 13){
-                    renderQuest(apigClient);
-                    e.preventDefault();
-                }
-            });
+            if (typeof result.data === "string") {
+                spinner.stop();
+                renderError(result.data);
+                $('#errorMessage').fadeIn();
+            } else {
+                renderAll(result.data);
+                spinner.stop();
+                $('#main').fadeIn(function() {
+                    $('#questKey').focus();
+                });
+    
+                $('#submit').click(function() { renderQuest(apigClient)} );
+                $('#questKey').on("keypress", function(e) {
+                    if(e.which === 13){
+                        renderQuest(apigClient);
+                        e.preventDefault();
+                    }
+                });
+            }
         }).catch( function(result){
             console.log(result);
     });

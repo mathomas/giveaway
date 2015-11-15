@@ -24,9 +24,13 @@
         <script type="text/javascript" src="./giveaway.js"></script>
         <script type="text/javascript" src="./lib2/spin.min.js"></script>
 
+        <script id="error" type="text/x-handlebars-template">
+            <p id="errorMessage">{{message}}</p>
+        </script>
+
         <script id="intro" type="text/x-handlebars-template">
             <div id="intro">
-                <h1 style="margin-bottom: 0;">{{item}}<br/>Giveaway</h1>
+                <h1 style="margin-bottom: 0;"><em>{{item}}</em><br/>Giveaway</h1>
                 <h3 style="margin-top: 0;">by Mike Thomas</h3>
                 <h4 style="margin-top: 0;">Expires {{expirationFormatted}}<br/>({{expirationFromNow}})</h4>
             </div>
@@ -39,7 +43,7 @@
                 <pre>
                 From:  luckywinner@email.com
                 To:    {{entryEmail}}
-                Subject:  Entry for {{item}}
+                Subject:  Entry for <em>{{item}}</em>
                 -------------------------------------------------------------
                 Hi Mike,
 
@@ -77,13 +81,13 @@
                 <h2>Cautions, Rules, and Legal Stuff</h2>
                 <p>If you're taking part in the contest you agree to the following:
                 <ul>
-                    <li>Please realize I'm going to send the {{item}} as cheaply as possible :-)</em>
+                    <li>Please realize I'm going to send the <em>{{item}}</em> as cheaply as possible :-)</em>
                     <li><em>One entry per person.</em>  Duplicate entries will be ignored.
                     <li>You alone are responsible for your country's customs or taxes, if applicable.</em>
                     <li>No complaining!
                 </ul>
                 <h2>Instructions</h2>
-                <p>Welcome to the {{item}} giveaway!  In order to be entered into the drawing for this item, you need
+                <p>Welcome to the <em>{{item}}</em> giveaway!  In order to be entered into the drawing for this item, you need
                     to carefully follow the <em style="text-decoration: underline;">5 easy steps</em> below.
                 </p>
                 <p>When the time limit is up, I'll put all the valid entries into a drawing to determine the winner.  I will
@@ -113,7 +117,7 @@
                     </li>
                     <li>
                         Once your quests are complete, send an email to 
-                        <a href="mailto:{{entryEmail}}?subject=Entry for {{item}} Drawing">{{entryEmail}}</a> with the following:
+                        <a href="mailto:{{entryEmail}}?subject=Entry for <em>{{item}}</em> Drawing">{{entryEmail}}</a> with the following:
                         <ul>
                             <li>Your youtube username (so I can check that you are subscribed)
                             <li>Your quest findings.  All the quests must be completed.  Give the quest key and your findings.

@@ -7,8 +7,15 @@
     h2, h3 { color: lightblue; text-align: center; margin-top: 1.5em; }
     ol > li { font-size: 1em; }
     li { margin-top: 1em; }
-    div#main { width: 800px; margin: 0 auto; padding: 10px 125px 25px 125px; background: white; border-left: 2px solid #444; border-right: 2px solid #444; }
-    div#main { display: none; }
+    div#main { width: 800px; margin: 0 auto; padding: 10px 125px 25px 125px; background: white; border-left: 2px solid #444; border-right: 2px solid #444; display: none; }
+    
+    #errorMessage { color: red; background-color: white; border: 5px solid red; padding: 10px; border-radius: 10px; width: 60%; margin-top: 6em; margin-left:auto; margin-right:auto; display: none; }
+    div#result { min-height: 2em; margin-top: 1.5em; font-size: .80em; margin-bottom: 1em; color: white; text-shadow: darkblue 0.05em 0.05em 0.1em; }
+    div#instructions { text-align: left; margin-top: 4em; font-size: .60em; color: #888; }
+    em { color: #666; }
+    .key { font-family: Arial, sans-serif; color: #666 }
+    div#exampleEmail { text-align: left; margin-top: 4em; font-size: .40em; color: black; border: 1px solid gray; border-right: 1px solid black; border-bottom: 1px solid black; }
+    
     
     .btn {
     -moz-box-shadow: 0px 1px 0px 0px #fff6af;
@@ -51,9 +58,3 @@
     top:1px;
     }
     
-    div#result { min-height: 2em; margin-top: 1.5em; font-size: .80em; margin-bottom: 1em; color: white; text-shadow: darkblue 0.05em 0.05em 0.1em; }
-    div#instructions { text-align: left; margin-top: 4em; font-size: .60em; color: #888; }
-    em { color: #666; }
-    .key { font-family: Arial, sans-serif; color: #666 }
-    div#exampleEmail { text-align: left; margin-top: 4em; font-size: .40em; color: black; 
-    border: 1px solid gray; border-right: 1px solid black; border-bottom: 1px solid black; }
