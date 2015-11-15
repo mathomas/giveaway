@@ -2,7 +2,8 @@ var exampleDetails = {
     "item": "Hardcoded Test Item",
     "questCount": 4,
     "entryEmail": "entry@email.com",
-    "expiration": "2015-11-21 24:00:00"
+    "expiration": "2015-11-21 24:00:00",
+    "questKeyLocations": "The quest keys may show up in \"cards\" within the first couple of minutes of any of my videos from this year.  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too."
 };
 
 var queryString = function(key) {
@@ -120,7 +121,8 @@ $(window).load(function() {
                 renderError(result.data);
                 $('#errorMessage').fadeIn();
             } else {
-                renderAll(result.data);
+//                renderAll(result.data);
+                renderAll(exampleDetails);
                 spinner.stop();
                 $('#main').fadeIn(function() {
                     $('#questKey').focus();
