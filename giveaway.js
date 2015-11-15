@@ -56,12 +56,20 @@ var renderAll = function(giveawayDetails) {
     renderExampleEmail(giveawayDetails);
 };
 
+var questSpinner = function() {
+    return new Spinner({ length: 0, corners: 1, width: 4, trail: 40, scale: 1.0, top: '.65em', left: '50%', position: 'relative' });
+}
+
+var giveawaySpinner = function() {
+    return new Spinner({ length: 0, corners: 1, width: 4, scale: 1.5, trail: 40, top: '25%', left: '50%', position: 'absolute' });
+}
+
 var renderQuest = function (apigClient) {
     var errorMsg = "No quest matching that quest key!";
     var questDisplay = $('#result');
     
     questDisplay.html("&nbsp;");
-    var spinner = new Spinner({ length: 0, corners: 1, width: 4, trail: 40, scale: 1.0, top: '.65em', left: '50%', position: 'relative' }).spin(questDisplay[0]);
+    var spinner = questSpinner().spin(questDisplay[0]);
     
     var questKey = $('#questKey').val();
     var params = { giveawaycode: queryString("g"), questKey: questKey };
@@ -76,14 +84,13 @@ var renderQuest = function (apigClient) {
 };
 
 $(window).load(function(){
-    var spinnerOpts = { length: 0, corners: 1, width: 4, scale: 1.5, trail: 40, top: '25%', left: '50%', position: 'absolute' }
-    var spinner = new Spinner(spinnerOpts).spin($('body')[0]);
+    var spinner = giveawaySpinner().spin($('body')[0]);
     
     var apigClient = apigClientFactory.newClient();
 
     var params = { giveawaycode: queryString("g") };
     apigClient.giveawayDetailsGiveawaycodeGet(params, {}, {})
-        .then(function(result){
+        .then(function(result) {
             if (typeof result.data === "string") {
                 spinner.stop();
                 renderError(result.data);
