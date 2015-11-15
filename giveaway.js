@@ -1,4 +1,3 @@
-
 var exampleDetails = {
     "item": "Hardcoded Test Item",
     "questCount": 4,
@@ -15,7 +14,9 @@ var queryString = function(key) {
 var renderError = function(message) {
     var source = $("#error").html();
     var template = Handlebars.compile(source);
-    var html = template({message: message});
+    var html = template({
+        message: message
+    });
     $('body').html(html);
 };
 
@@ -57,38 +58,61 @@ var renderAll = function(giveawayDetails) {
 };
 
 var questSpinner = function() {
-    return new Spinner({ length: 0, corners: 1, width: 4, trail: 40, scale: 1.0, top: '.65em', left: '50%', position: 'relative' });
+    return new Spinner({
+        length: 0,
+        corners: 1,
+        width: 4,
+        trail: 40,
+        scale: 1.0,
+        top: '.65em',
+        left: '50%',
+        position: 'relative'
+    });
 }
 
 var giveawaySpinner = function() {
-    return new Spinner({ length: 0, corners: 1, width: 4, scale: 1.5, trail: 40, top: '25%', left: '50%', position: 'absolute' });
+    return new Spinner({
+        length: 0,
+        corners: 1,
+        width: 4,
+        scale: 1.5,
+        trail: 40,
+        top: '25%',
+        left: '50%',
+        position: 'absolute'
+    });
 }
 
-var renderQuest = function (apigClient) {
+var renderQuest = function(apigClient) {
     var errorMsg = "No quest matching that quest key!";
     var questDisplay = $('#result');
-    
+
     questDisplay.html("&nbsp;");
     var spinner = questSpinner().spin(questDisplay[0]);
-    
+
     var questKey = $('#questKey').val();
-    var params = { giveawaycode: queryString("g"), questKey: questKey };
+    var params = {
+        giveawaycode: queryString("g"),
+        questKey: questKey
+    };
 
     apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
-        .then(function(result){
+        .then(function(result) {
             var quest = result.data;
             questDisplay.html(quest ? quest : errorMsg);
-        }).catch( function(result){
+        }).catch(function(result) {
             questDisplay.html(errorMsg);
-    });
+        });
 };
 
-$(window).load(function(){
+$(window).load(function() {
     var spinner = giveawaySpinner().spin($('body')[0]);
-    
+
     var apigClient = apigClientFactory.newClient();
 
-    var params = { giveawaycode: queryString("g") };
+    var params = {
+        giveawaycode: queryString("g")
+    };
     apigClient.giveawayDetailsGiveawaycodeGet(params, {}, {})
         .then(function(result) {
             if (typeof result.data === "string") {
@@ -101,17 +125,18 @@ $(window).load(function(){
                 $('#main').fadeIn(function() {
                     $('#questKey').focus();
                 });
-    
-                $('#submit').click(function() { renderQuest(apigClient)} );
+
+                $('#submit').click(function() {
+                    renderQuest(apigClient)
+                });
                 $('#questKey').on("keypress", function(e) {
-                    if(e.which === 13){
+                    if (e.which === 13) {
                         renderQuest(apigClient);
                         e.preventDefault();
                     }
                 });
             }
-        }).catch( function(result){
+        }).catch(function(result) {
             console.log(result);
-    });
+        });
 });
-
