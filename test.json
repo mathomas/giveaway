@@ -3,10 +3,11 @@
         "code": "test",
         "item": "Test Item",
         "expiration": "2015-10-29T00:00:00",
-        "entryEmail": "testgiveaway@icloud.com"
+        "entryEmail": "testgiveaway@icloud.com",
+        "questKeyLocations": "This is a test, otherwise the quest key locations would be displayed."
     },
     "quests": [
-        { "questKey": "zeiss", "text": "quest for quest key 'zeiss'" },
-        { "questKey": "example", "text": "quest for quest key 'example'" }
+        { "questKey": "example1", "text": "quest for quest key 'example one'" },
+        { "questKey": "example2", "text": "quest for quest key 'example two'" }
     ]
 }
