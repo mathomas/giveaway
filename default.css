@@ -30,7 +30,7 @@
     }
     h2,
     h3 {
-        color: lightblue;
+        color: rgb(128, 128, 200);
         text-align: center;
         margin-top: 1.5em;
     }
@@ -73,7 +73,7 @@
         text-align: left;
         margin-top: 4em;
         font-size: .60em;
-        color: #888;
+        color: #555;
     }
     em {
         color: #666;
