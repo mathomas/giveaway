@@ -2,7 +2,8 @@ var exampleDetails = {
     "item": "Hardcoded Test Item",
     "questCount": 4,
     "entryEmail": "entry@email.com",
-    "expiration": "2015-11-21 24:00:00",
+    "region": "Entry is open to the whole world!  Be prepared for shipping to take a long time, though!",
+    "expiration": "2015-12-09 24:00:00",
     "questKeyLocations": "The quest keys may show up in \"cards\" within the first couple of minutes of any of my videos from this year.  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too."
 };
 
@@ -24,7 +25,7 @@ var renderError = function(message) {
 var renderIntro = function(giveawayDetails) {
     var source = $("#intro").html();
     var template = Handlebars.compile(source);
-    giveawayDetails.expirationFormatted = moment(giveawayDetails.expiration).format("MMMM Do YYYY, hh:mm");
+    giveawayDetails.expirationFormatted = moment(giveawayDetails.expiration).format("MMMM Do YYYY, HH:mm");
     giveawayDetails.expirationFromNow = moment(giveawayDetails.expiration).fromNow();
     var html = template(giveawayDetails);
     $('#intro-placeholder').html(html);
@@ -122,7 +123,7 @@ $(window).load(function() {
                 $('#errorMessage').fadeIn();
             } else {
                 renderAll(result.data);
-//                renderAll(exampleDetails);
+//               renderAll(exampleDetails);
                 spinner.stop();
                 $('#main').fadeIn(function() {
                     $('#questKey').focus();

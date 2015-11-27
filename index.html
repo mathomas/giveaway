@@ -80,6 +80,9 @@
 
     <script id="instructions" type="text/x-handlebars-template">
         <div id="instructions">
+            <h2>Region</h2>
+            <p>{{region}}</p>
+
             <h2>Cautions, Rules, and Legal Stuff</h2>
             <p>If you're taking part in the contest you agree to the following:</p>
             <ul>
@@ -90,6 +93,7 @@
                 </li>
                 <li>No complaining!
             </ul>
+
             <h2>Instructions</h2>
             <p>Welcome to the <em>{{item}}</em> giveaway contest!  The contest is basically a multi-step internet scavenger hunt.</p>
             <p>In order to be entered into the drawing for this item you must carefully follow the <em style="text-decoration: underline;">5 easy steps</em> below.
@@ -102,7 +106,7 @@
                     <em>Only subscribers can win</em>.
                 </li>
                 <li>
-                    <p>Find the <span style="font-size: 125%; font-weight: bold;"><em>{{questCount}}</em></span> <em>"quest keys"</em> I've hidden here and there in the internets.</p>
+                    <p>Find the <span style="font-size: 125%; font-weight: bold;"><em>{{questCount}}</em></span> <em>"quest keys"</em> I've hidden here and there in the internets:</p>
                     <p>{{questKeyLocations}}</p>
                     <p>A quest key will look something like this: <span class="key">quest key: snarfle</span>.  I suggest you try typing "snarfle" into the <em>quest key</em> form above to see how it works.
                     </p>
@@ -119,7 +123,7 @@
                 </li>
                 <li>
                     Once your quests are complete, send an email to
-                    <a href="mailto:{{entryEmail}}?subject=Entry for <em>{{item}}</em> Drawing">{{entryEmail}}</a> with the following:
+                    <a href="mailto:{{entryEmail}}?subject=Entry for '{{item}}' Giveaway">{{entryEmail}}</a> with the following:
                     <ul>
                         <li>Your youtube username (so I can check that you are subscribed)</li>
                         <li>Your quest findings. All the quests must be completed. Give the quest key and your findings.</li>

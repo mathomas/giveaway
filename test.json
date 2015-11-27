@@ -3,6 +3,7 @@
         "code": "test",
         "item": "Test Item",
         "expiration": "2015-10-29T00:00:00",
+        "region": "The Universe.  Big, isn't it?",
         "entryEmail": "testgiveaway@icloud.com",
         "questKeyLocations": "This is a test, otherwise the quest key locations would be displayed."
     },

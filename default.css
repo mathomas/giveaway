@@ -1,5 +1,5 @@
-    body {
-        background: lightblue;
+    body, form {
+        background: #a0b0c0;
     }
     body,
     input {
@@ -13,7 +13,6 @@
         border: inset 1px;
     }
     form {
-        background: lightblue;
         border: 6px solid darkblue;
         margin-top: 1.5em;
         padding: 10px;
@@ -30,7 +29,7 @@
     }
     h2,
     h3 {
-        color: rgb(128, 128, 200);
+        color: #607080;
         text-align: center;
         margin-top: 1.5em;
     }
@@ -64,10 +63,10 @@
     div#result {
         min-height: 2em;
         margin-top: 1.5em;
-        font-size: .80em;
+        font-size: .85em;
         margin-bottom: 1em;
         color: white;
-        text-shadow: darkblue 0.05em 0.05em 0.1em;
+        text-shadow: black 0.05em 0.05em 0.1em;
     }
     div#instructions {
         text-align: left;
