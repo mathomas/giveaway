@@ -31,10 +31,9 @@
 
     <script id="intro" type="text/x-handlebars-template">
         <div id="intro">
-            <h1 style="margin-bottom: 0;">{{item}} Giveaway</h1>
+            <h1 style="margin-bottom: 0;">{{item}} Giveaway ({{code}})</h1>
             <h3 style="margin-top: 0;">brought to you by <a href="http://www.youtube.com/user/mathomas1962">Mike Thomas</a></h3>
-            <h5 style="margin-top: 0;">Expires {{expirationFormatted}}<br/>({{expirationFromNow}})</h5>
-        </div>
+            </div>
     </script>
 
     <script id="example-email" type="text/x-handlebars-template">
@@ -80,6 +79,9 @@
 
     <script id="instructions" type="text/x-handlebars-template">
         <div id="instructions">
+            <h2>Expiration</h2>
+            <p>Contest <b><em>Expires {{expirationFormatted}}</em></b>  ({{expirationFromNow}})</p>
+            
             <h2>Region</h2>
             <p>{{region}}</p>
 
@@ -107,9 +109,11 @@
                 </li>
                 <li>
                     <p>Find the <span style="font-size: 125%; font-weight: bold;"><em>{{questCount}}</em></span> <em>"quest keys"</em> I've hidden here and there in the internets:</p>
-                    <p>{{questKeyLocations}}</p>
-                    <p>A quest key will look something like this: <span class="key">quest key: snarfle</span>.  I suggest you try typing "snarfle" into the <em>quest key</em> form above to see how it works.
-                    </p>
+                    <p>A quest key is the giveaway code ({{code}}) combined with a keyword.  The keyword is <em>italicized</em> below.
+                    <p>For example: <span class="key">{{code}}:<i>snarfle</i></span></p>
+                    <p>You only type the <i>keyword</i> into the form above.  I suggest you try typing "snarfle" into the <em>quest key</em> form to see how it works.</p>
+                    
+                    <p><em><b>Where to look:</b></em>&nbsp;&nbsp;&nbsp;{{questKeyLocations}}</p>
                     </li>
                 <li>
                     <p>Come back here and enter the <em>quest keys</em> (one at a time) into the form above, and click the "Get Quest" button to have each quest revealed.</p>
