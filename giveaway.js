@@ -138,6 +138,7 @@ $(window).load(function() {
                         e.preventDefault();
                     }
                 });
+                $('questkey').focus();
             }
         }).catch(function(result) {
             console.log(result);
