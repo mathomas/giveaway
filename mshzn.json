@@ -5,13 +5,18 @@
         "expiration": "2015-12-11T23:59:00Z",
         "region": "Open to everyone around the world! (But it could take a long time to get to you!)",
         "entryEmail": "mshzn62@icloud.com",
-        "questKeyLocations": "The quest keys may show up in annotations within any of my photography-related videos from this year (yes, there are quite a few, but this is a very nice bag!).  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too."
+        "questKeyLocations": "You're going to have to hunt!  The quest keys may show up in annotations within any of my photography-related videos from this year (yes, there are quite a few, but this is a very nice bag!).  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too."
     },
     "quests": [
-        { "questKey": "a7ii", "text": "What (<i>very specific</i>) color is my Porsche Boxster?<br/>I mean the <i>exact name</i> of the paint color." },
-        { "questKey": "nikon", "text": "I've vlogged about two <i>Nikon</i> 35mm film cameras I've bought within the past 365 days.  What were they?" },
-        { "questKey": "zeiss", "text": "Find my <a href='http://flickr.com' target='_new'>flickr.com</a> photostream.  What are the names of my three 'bestest college buddies'?" },
-        { "questKey": "mindshift", "text": "What are my dogs' names?" },        
-        { "questKey": "horizon", "text": "Pick a favorite photo from my flickr stream from this year (2015).  Tell me why you like it." }
+        { "questKey": "a7ii", "text": "What (<i>very specific</i>) color is my Porsche Boxster?<br/>I mean the <i>exact name</i> of the paint color.", 
+          "location": "https://www.flickr.com/photos/mathomas/17266485392/in/dateposted-public/" },
+        { "questKey": "nikon", "text": "I've vlogged about two <i>Nikon</i> 35mm film cameras I've bought within the past 365 days.  What were they?", 
+          "location": "https://youtu.be/-zNlE1ykthU?t=3m8s" },
+        { "questKey": "zeiss", "text": "Find my <a href='http://flickr.com' target='_new'>flickr.com</a> photostream.  What are the names of my three 'bestest college buddies'?", 
+          "location": "https://youtu.be/_MfZ9gLFGdE?t=1m16s" },
+        { "questKey": "mindshift", "text": "On my tumblr blog there is a photo titled 'Plymouth'.  What is the state of the license plate on the car?", 
+          "location": "https://youtu.be/Jsb5_R9bHJ4?t=1m1s"},
+        { "questKey": "horizon", "text": "Pick a favorite photo from my flickr stream from this year (2015).  Tell me why you like it.",
+          "location": "https://youtu.be/bcCqCSqXOMQ?t=9m59s" }
     ]
 }
