@@ -1,10 +1,11 @@
 var exampleDetails = {
+    "code": "mshzn",
     "item": "Hardcoded Test Item",
     "questCount": 4,
     "entryEmail": "entry@email.com",
     "region": "Entry is open to the whole world!  Be prepared for shipping to take a long time, though!",
     "expiration": "2015-12-09 24:00:00",
-    "questKeyLocations": "The quest keys may show up in \"cards\" within the first couple of minutes of any of my videos from this year.  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too."
+    "questKeyLocations": "<p>You're going to have to hunt!  Quest Keys may show up in <i>annotations</i> within any of my last 25 or so videos.  You can probably make an educated guess as to which videos are likely to contain a Quest Key.</p><p><b>Note:</b> YouTube annotations only show up in web browsers (so far as I know) -- not YouTube apps for tablets and phones.  Probably best to use a computer to hunt down Quest Keys in annotations.</p><p>Quest Keys may <i>also</i> appear in photos posted to my Flickr photostream this year (in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too.</p>"
 };
 
 var queryString = function(key) {
@@ -123,7 +124,7 @@ $(window).load(function() {
                 $('#errorMessage').fadeIn();
             } else {
                 renderAll(result.data);
-//               renderAll(exampleDetails);
+//                renderAll(exampleDetails);
                 spinner.stop();
                 $('#main').fadeIn(function() {
                     $('#questKey').focus();

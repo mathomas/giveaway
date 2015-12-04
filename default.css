@@ -8,6 +8,9 @@
         font-size: 28px;
         text-align: center;
     }
+    p {
+        margin: .5em;
+    }
     input {
         text-align: center;
         border: inset 1px;
@@ -29,9 +32,24 @@
     }
     h2,
     h3 {
-        color: #607080;
         text-align: center;
+    }
+    h2,
+    h3,
+    h4,
+    h5 {
+        color: #607080;
+    }
+    h2,
+    h3,
+    h4 {
         margin-top: 1.5em;
+        margin-bottom: 0;
+    }
+    h5 {
+        color: #607080;
+        margin-top: .5em;
+        margin-bottom: 0;
     }
     ol > li {
         font-size: 1em;

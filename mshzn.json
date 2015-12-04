@@ -1,22 +1,54 @@
 {
-    "details": {
-        "code": "mshzn",
-        "item": "Mindshift Horizon Backpack",
-        "expiration": "2015-12-11T23:59:00Z",
-        "region": "Open to everyone around the world! (But it could take a long time to get to you!)",
-        "entryEmail": "mshzn62@icloud.com",
-        "questKeyLocations": "You're going to have to hunt!  The quest keys may show up in annotations within any of my photography-related videos from this year (yes, there are quite a few, but this is a very nice bag!).  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too."
-    },
-    "quests": [
-        { "questKey": "a7ii", "text": "What (<i>very specific</i>) color is my Porsche Boxster?<br/>I mean the <i>exact name</i> of the paint color.", 
-          "location": "https://www.flickr.com/photos/mathomas/17266485392/in/dateposted-public/" },
-        { "questKey": "nikon", "text": "I've vlogged about two <i>Nikon</i> 35mm film cameras I've bought within the past 365 days.  What were they?", 
-          "location": "https://youtu.be/-zNlE1ykthU?t=3m8s" },
-        { "questKey": "zeiss", "text": "Find my <a href='http://flickr.com' target='_new'>flickr.com</a> photostream.  What are the names of my three 'bestest college buddies'?", 
-          "location": "https://youtu.be/_MfZ9gLFGdE?t=1m16s" },
-        { "questKey": "mindshift", "text": "On my tumblr blog there is a photo titled 'Plymouth'.  What is the state of the license plate on the car?", 
-          "location": "https://youtu.be/Jsb5_R9bHJ4?t=1m1s"},
-        { "questKey": "horizon", "text": "Pick a favorite photo from my flickr stream from this year (2015).  Tell me why you like it.",
-          "location": "https://youtu.be/bcCqCSqXOMQ?t=9m59s" }
-    ]
+   "details":{
+      "code":"mshzn",
+      "item":"Mindshift Horizon Backpack",
+      "expiration":"2015-12-30T23:59:00Z",
+      "region":"Open to everyone around the world! (But it could take a long time to get to you!)",
+      "entryEmail":"mshzn62@icloud.com",
+      "questKeyLocations":"<p>You're going to have to hunt!  Quest Keys may show up in <i>annotations</i> within any of my last 25 or so videos.  You can probably make an educated guess as to which videos are likely to contain a Quest Key.</p><p><b>Note:</b> YouTube annotations only show up in web browsers (so far as I know) -- not YouTube apps for tablets and phones.  Probably best to use a computer to hunt down Quest Keys in annotations.</p><p>Quest Keys may <i>also</i> appear in photos posted to my Flickr photostream this year (in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too.</p>"
+   },
+   "quests":[
+      {
+         "questKey":"mindshift",
+         "text":"On my tumblr blog there is a photo titled 'Plymouth'.  What is the state of the license plate on the car?",
+         "locations":[
+            "https://youtu.be/Jsb5_R9bHJ4?t=1m1s",
+            "https://www.flickr.com/photos/mathomas/21363537283/",
+            "https://youtu.be/kqyTsMWm6Cg?t=3m3s"
+         ]
+      },
+      {
+         "questKey":"horizon",
+         "text":"Pick a favorite photo from my flickr stream from this year (2015).  Tell me why you like it.",
+         "locations":[
+            "https://youtu.be/bcCqCSqXOMQ?t=9m59s",
+            "https://youtu.be/AL83Otx8tzo?t=2m6s"
+         ]
+      },
+      {
+         "questKey":"a7ii",
+         "text":"What (<i>very specific</i>) color is my Porsche Boxster?<br/>I mean the <i>exact name</i> of the paint color.",
+         "locations":[
+            "https://www.flickr.com/photos/mathomas/17266485392/",
+            "https://youtu.be/KRfqcUpskUQ?t=3m1s",
+            "https://youtu.be/l73YctMjixE?t=2m2s"
+         ]
+      },
+      {
+         "questKey":"nikon",
+         "text":"I've vlogged about two <i>Nikon</i> 35mm film cameras I've bought within the past 365 days.  What were they?",
+         "locations":[
+            "https://youtu.be/-zNlE1ykthU?t=3m8s",
+            "https://youtu.be/8yYDB64JO18?t=4m3s"
+         ]
+      },
+      {
+         "questKey":"zeiss",
+         "text":"Find my <a href='http://flickr.com' target='_new'>flickr.com</a> photostream.  What are the names of my three 'bestest college buddies'?",
+         "locations":[
+            "https://youtu.be/_MfZ9gLFGdE?t=1m16s",
+            "https://youtu.be/iq6gh56foQg?t=1m2s"
+         ]
+      }
+   ]
 }
