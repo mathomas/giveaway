@@ -81,6 +81,9 @@
         font-family: Arial, sans-serif;
         color: #666
     }
+    .questCount {
+        font-size: 125%; font-weight: bold;
+    }
     div#exampleEmail {
         text-align: left;
         margin-top: 4em;

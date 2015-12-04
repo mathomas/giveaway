@@ -5,7 +5,8 @@
         "expiration": "2015-12-11T23:59:00Z",
         "region": "Open to everyone around the world! (But it could take a long time to get to you!)",
         "entryEmail": "mshzn62@icloud.com",
-        "questKeyLocations": "You're going to have to hunt!  The quest keys may show up in annotations within any of my photography-related videos from this year (yes, there are quite a few, but this is a very nice bag!).  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too."
+        "questKeyLocations": "You're going to have to hunt!  The quest keys may show up in annotations within any of my photography-related videos from this year (yes, there are quite a few, but this is a very nice bag!).  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too.",
+        "minQuests": "3"
     },
     "quests": [
         { "questKey": "a7ii", "text": "What (<i>very specific</i>) color is my Porsche Boxster?<br/>I mean the <i>exact name</i> of the paint color.", 
