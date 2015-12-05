@@ -56,9 +56,8 @@
                 snarfle:  I found three pictures of dolphins
                 bloog:    The monkeys names are "flip" and "flop"
                 spliff:   Max aperture of f/2.8
-                foobar:   I loved the 5th one
-                quux:     Row, row, row your boat 
-            </pre>
+                (... more findings if the contest reqires ...)
+                </pre>
         </div>
         *** of course, your username, quest keywords, and findings will be different!
     </script>
@@ -66,7 +65,7 @@
     <script id="giveaway-form" type="text/x-handlebars-template">
         <div id="form">
             <form id="questForm" action="#">
-                <label>Quest Keyword:</label>
+                <label>Quest Finder</label>
                 <input id="questKey" type="text" required="true" style="width: 8em; margin-bottom: .75em;">
                 <br>
                 <button id="submit" class="btn" type="button">Get Quest</button>
@@ -96,34 +95,36 @@
                 <li>No complaining!
             </ul>
 
-            <h2>Instructions</h2>
-            <p>Welcome to the <em>{{item}}</em> giveaway contest!  The contest is basically a multi-step internet scavenger hunt.</p>
-            <p>In order to be entered into the drawing for this item you must carefully follow the <em style="text-decoration: underline;">5 easy steps</em> below.
-            </p>
-            <p>When the time limit is up, I'll put all the valid entries into a drawing to determine the winner.  I will contact the winner by email to get the mailing address.
-            </p>
-            <p style="font-size: larger;"><b>If these instructions aren't followed you will not be entered in the drawing!</b></p>
+            <h2>An Internet Scavenger Hunt</h2>
+            <p>
+            Welcome to the <em>{{item}}</em> giveaway contest!  The contest is basically a multi-step internet scavenger hunt.  The hunt requires you to correctly carry out a series of <em>"quests"</em>.</p>
+            <h3>How it works</h3>
+            <p>Each quest has a matching <em>"quest key"</em>.  The quest keys are hidden here and there in the internets (see "where to look" below).
+            <p>To reveal your quests you need to find the quest keys and use the <em>Quest Finder</em> above.
+               A quest key is the giveaway code ({{code}}) combined with a keyword:</p>
+            <p>{{code}}:<span class="key"><i>snarfle</i></span></p>
+            <p>You only type the <i>keyword</i> into the <em>Quest Finder</em>.  I suggest you try typing "snarfle" into the <em>Quest Finder</em> form to see how it works.</p>
+            <h3>Where to look</h3>
+            {{{questKeyLocations}}}
+            
+            <h2>How to Enter</h2>
+            <p>In order to be entered into the drawing for this item you must carefully follow the <em style="text-decoration: underline;">3 easy steps</em> below.</p>
+            <p>When the time limit is up, I'll put all the valid entries into a drawing to determine the winner.  I will contact the winner by email to get the mailing address.</p>
+            
+            <p style="font-size: larger;"><b>If these detailed instructions aren't followed you will not be entered in the drawing!</b></p>
             <ol>
                 <li><em>Subscribe</em> to <a href="http://www.youtube.com/user/mathomas1962">my YouTube channel</a>.
                     <em>Only subscribers can win</em>.
                 </li>
                 <li>
-                    <p>Find the <span class="questCount">{{questCount}}</span> <em>"quest keys"</em> I've hidden here and there in the internets:</p>
-                    <p>A quest key is the giveaway code ({{code}}) combined with a keyword.  The keyword is <em>italicized</em> below.
-                    <p>For example: <span class="key">{{code}}:<i>snarfle</i></span></p>
-                    <p>You only type the <i>keyword</i> into the form above.  I suggest you try typing "snarfle" into the <em>quest keyword</em> form to see how it works.</p>
-                    
-                    <p><em><b>Where to look:</b></em>&nbsp;&nbsp;&nbsp;{{{questKeyLocations}}}</p>
-                    </li>
-                <li>
-                    <p>Come back here and enter the <em>quest keywords</em> (one at a time) into the form above, and click the "Get Quest" button to have each quest revealed.</p>
-                    <p>I suggest you try typing <span class="key">snarfle</span> in the form <em>now</em>, just for fun!</p>
-                </li>
-                <li>
-                    <p>Perform the quests (<em>all {{questCount}} of them</em>), and take notes! You'll have to do some detective work, but everything you need to know in order to perform the quests is in my YouTube videos, or their descriptions, etc.
-                    </p>
-                    <p><em>You have to perform all the quests, and get the answers/findings correct to win.</em>
-                    </p>
+                    <p>Complete the required number of quests.  Take notes, because you'll need them for the entry email.
+                    <p class="goal">
+                        {{#if minQuests}}
+                            For this contest there are <span class="questCount">{{questCount}}</span> different quests, but you only have to complete <span class="questCount">{{minQuests}}</span> of them to enter. If you choose to complete <em>all</em> of the quests, I'll throw in a little something extra if you win the drawing.
+                        {{else}}
+                         For this contest you must complete <span class="questCount">{{questCount}} quests</span>
+                        {{/if}}
+                     </p>
                 </li>
                 <li>
                     Once your quests are complete, send an email to

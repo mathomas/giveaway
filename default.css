@@ -79,10 +79,12 @@
     }
     .key {
         font-family: Arial, sans-serif;
-        color: #666
+        color: #666;
+        background-color: yellow;
     }
+    .goal { font-size: 120%; }
     .questCount {
-        font-size: 125%; font-weight: bold;
+        font-size: 115%; font-weight: bold;
     }
     div#exampleEmail {
         text-align: left;
