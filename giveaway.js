@@ -1,9 +1,10 @@
 var exampleDetails = {
+    "code": "test",
     "item": "Hardcoded Test Item",
     "questCount": 4,
     "entryEmail": "entry@email.com",
     "region": "Entry is open to the whole world!  Be prepared for shipping to take a long time, though!",
-    "expiration": "2015-12-09 24:00:00",
+    "expiration": "2015-12-13T19:52:00Z",
     "questKeyLocations": "The quest keys may show up in \"cards\" within the first couple of minutes of any of my videos from this year.  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too."
 };
 
@@ -20,6 +21,14 @@ var renderError = function(message) {
         message: message
     });
     $('body').html(html);
+};
+
+var renderExpired = function(giveawayDetails) {
+    var source = $("#expired").html();
+    var template = Handlebars.compile(source);
+    giveawayDetails.expirationFormatted = moment(giveawayDetails.expiration).format("MMMM Do YYYY, HH:mm");
+    var html = template(giveawayDetails);
+    $('#intro-placeholder').html(html);
 };
 
 var renderIntro = function(giveawayDetails) {
@@ -53,10 +62,14 @@ var renderExampleEmail = function(giveawayDetails) {
 };
 
 var renderAll = function(giveawayDetails) {
-    renderIntro(giveawayDetails);
-    renderForm(giveawayDetails);
-    renderInstructions(giveawayDetails);
-    renderExampleEmail(giveawayDetails);
+    if ( moment(giveawayDetails.expiration).isAfter(moment()) ) {
+        renderIntro(giveawayDetails);
+        renderForm(giveawayDetails);
+        renderInstructions(giveawayDetails);
+        renderExampleEmail(giveawayDetails);
+    } else {
+        renderExpired(giveawayDetails);
+    }
 };
 
 var questSpinner = function() {
@@ -122,8 +135,8 @@ $(window).load(function() {
                 renderError(result.data);
                 $('#errorMessage').fadeIn();
             } else {
-                renderAll(result.data);
-//               renderAll(exampleDetails);
+//                renderAll(result.data);
+               renderAll(exampleDetails);
                 spinner.stop();
                 $('#main').fadeIn(function() {
                     $('#questKey').focus();
