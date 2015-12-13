@@ -135,8 +135,8 @@ $(window).load(function() {
                 renderError(result.data);
                 $('#errorMessage').fadeIn();
             } else {
-//                renderAll(result.data);
-               renderAll(exampleDetails);
+                renderAll(result.data);
+//               renderAll(exampleDetails);
                 spinner.stop();
                 $('#main').fadeIn(function() {
                     $('#questKey').focus();
