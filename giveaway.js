@@ -8,11 +8,11 @@ var exampleDetails = {
     "questKeyLocations": "The quest keys may show up in \"cards\" within the first couple of minutes of any of my videos from this year.  They may also appear in photos posted to my Flickr photostream this year (in the photo itself, or in tags or descriptions).  If you don't know my Flickr photostream, you'll have to figure that out, too."
 };
 
-var queryString = function(key) {
+var queryString = function (key) {
     key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx control chars
     var match = location.search.match(new RegExp("[?&]" + key + "=([^&]+)(&|$)"));
     return match && decodeURIComponent(match[1].replace(/\+/g, " "));
-}
+};
 
 var renderError = function(message) {
     var source = $("#error").html();
@@ -72,7 +72,7 @@ var renderAll = function(giveawayDetails) {
     }
 };
 
-var questSpinner = function() {
+var questSpinner = function () {
     return new Spinner({
         length: 0,
         corners: 1,
@@ -83,9 +83,9 @@ var questSpinner = function() {
         left: '50%',
         position: 'relative'
     });
-}
+};
 
-var giveawaySpinner = function() {
+var giveawaySpinner = function () {
     return new Spinner({
         length: 0,
         corners: 1,
@@ -96,7 +96,7 @@ var giveawaySpinner = function() {
         left: '50%',
         position: 'absolute'
     });
-}
+};
 
 var renderQuest = function(apigClient) {
     var errorMsg = "No quest matching that quest key!";
