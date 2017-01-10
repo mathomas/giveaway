@@ -108,10 +108,10 @@ var renderQuest = function(apigClient) {
     var questKey = $('#questKey').val();
     var params = {
         giveawaycode: queryString("g"),
-        questKey: questKey
+        questkey: questKey
     };
 
-    apigClient.giveawayQuestGiveawaycodeQuestKeyGet(params, {}, {})
+    apigClient.giveawayQuestGiveawaycodeQuestkeyGet(params, {}, {})
         .then(function(result) {
             var quest = result.data;
             questDisplay.html(quest ? quest : errorMsg);
